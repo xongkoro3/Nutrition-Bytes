@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bytes of Nutrition</title>
+        <link rel="stylesheet" href="style.css">
+        <!-- Bootstrap core CSS -->
+        <link href="../bootstrap.min.css" rel="stylesheet">
+
+        <script type="text/javascript" src="chart.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="../logo_sh.png" width="30" height="30" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="../index.html">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../projects.html">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../publications.html">Publications</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+        <div>
+            <div id="controls">
+                <div id="allergies">
+                    <fieldset>
+                        <legend>
+                            <span class="underline">Allergies</span> 
+                            <span title="Allergies are red." id="red-square">&#9724;</span>
+                        </legend>
+                        <input type="text" id="allergyText"
+                            onkeyup="addAllergy(event)">
+                        <input type="submit" id="allergyButton"
+                            value="Add" onclick="addAllergy()">
+                        <ul id="allergyList"></ul>
+                    </fieldset>
+                </div>
+                <div id="labels">
+                    <fieldset>
+                        <legend><span class="underline">Labels</span></legend>
+                        <div>
+                            <input type="checkbox" id="names" onchange="changeLabels()">
+                            <label for="names">Names</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="values" onchange="changeLabels()">
+                            <label for="values">Values</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div id="content">
+                    <fieldset>
+                        <legend><span class="underline">Nutrients</span></legend>
+                        
+                        <div>
+                            <input type="checkbox" id="Lipid" class="legend"
+                                checked="checked" onchange="filterNutrientBars(this)">
+                            <label for="Lipid"> Lipids</label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="Mineral" class="legend"
+                                checked="checked" onchange="filterNutrientBars(this)">
+                            <label for="Mineral"> Minerals</label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="Proximate" class="legend"
+                                checked="checked" onchange="filterNutrientBars(this)">
+                            <label for="Proximate"> Proximates</label>
+                        </div>
+                        
+                        
+                        <div>
+                            <input type="checkbox" id="Vitamin" class="legend"
+                                checked="checked" onchange="filterNutrientBars(this)">
+                            <label for="Vitamin"> Vitamins</label>
+                        </div>
+                        
+                    </fieldset>
+                </div>
+
+
+                <div id="sorting">
+                    <fieldset>
+                        <legend><span class="underline">Nurtient Sorting</span></legend>
+                        <input id="sortGroup" name="nutrient" type="radio"
+                                    value="group" checked="checked"
+                                    onclick="sortNutrientBars()">
+                        <label for="sortGroup">Group</label>
+                        <input id="sortAmount" name="nutrient"
+                                    type="radio"
+                                    value="amount" onclick="sortNutrientBars()">
+                        <label for="sortAmount">Amount</label>
+                    </fieldset>
+                    <fieldset>
+                        <legend>
+                            <span class="underline">Ingredient Sorting</span> 
+                            <span title="Ingredients are purple." id="purple-square">&#9724;</span>
+                        </legend>
+                        <input id="sortSentiment" name="ingredient"
+                                    type="radio" value="sentiment"
+                                    onclick="sortIngredientBars()">
+                        <label for="sortSentiment">Sentiment</label>
+                        <input id="sortWeight" name="ingredient" type="radio" value="amount"
+                                onclick="sortIngredientBars()"
+                                checked="checked">
+                        <label for="sortWeight">Amount</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="vis">
+                <div id="left">
+                    <div id="main">
+                    </div>
+                </div>
+                <div id="right">
+                    <div id="small">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
